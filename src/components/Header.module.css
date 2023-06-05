@@ -1,0 +1,19 @@
+.header {
+  background: linear-gradient(
+    90deg,
+    rgba(83, 106, 198, 1) 26%,
+    rgba(0, 212, 255, 1) 99%
+  );
+  display: flex;
+  justify-content: center;
+  padding: 1.25rem 0;
+  height: 80px;
+  gap: 0.5rem;
+   
+}
+
+.header .hed {
+  display: flex;
+  align-items: center;
+  color: var(--white);
+}
