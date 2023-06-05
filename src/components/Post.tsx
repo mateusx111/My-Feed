@@ -3,7 +3,7 @@ import ptBR from 'date-fns/locale/pt-BR' // colocando em português
 import { Avatar } from './Avatar'
 import { Comment } from './Comment'
 import styles from './Post.module.css'
-import { useState } from 'react'
+import { ChangeEvent, FormEvent, InvalidEvent, useState } from 'react'
 
 interface Author {
   name: string;
@@ -11,10 +11,15 @@ interface Author {
   avatarUrl: string;
 }
 
+interface Content {
+  type: 'paragraph'| 'link';
+  content: string;
+}
+
 interface postProps{
   author: Author,
   publishedAt: Date,
-  content: string
+  content: Content[]
 }
 
 // props deesestruturadas
@@ -36,23 +41,23 @@ export function Post({ author, publishedAt, content }: postProps) {
     addSuffix: true,
   })
 
-  function handleCreateNewComment() {
+  function handleCreateNewComment(event: FormEvent) {
     event.preventDefault() // evita o comportamento padrão evita mudar de pagina
 
     setComments([...comments, newCommentText]) // não passo o que quero inserir mas sim NOVO VALOR
     setNewCommentText('') // limpar o campo da textarea
   }
 
-  function handleNewCommentChange() {
+  function handleNewCommentChange(event: ChangeEvent<HTMLTextAreaElement>) { // passando generics para o ts 
     event.target.setCustomValidity('')
     setNewCommentText(event.target.value)
   }
 
-  function handleNewCommentInvalid() {
+  function handleNewCommentInvalid(event: InvalidEvent<HTMLTextAreaElement>) {
     event.target.setCustomValidity('Esse campo é obrigatório')
   }
 
-  function deleteComment(commentTodelete) {
+  function deleteComment(commentTodelete: string) {
     //Função enviada como propriedade para o component Comment
     //imutabilidaed -> as variáveis não soferm mutação, nós criamor um nova valor(um novo espaço na memória)
     //Sera criada uma nova listra de comentários sem o comentário que foi deletado
