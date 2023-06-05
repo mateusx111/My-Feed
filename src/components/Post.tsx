@@ -16,14 +16,18 @@ interface Content {
   content: string;
 }
 
-interface postProps{
+export interface PostType {
+  id: number;
   author: Author,
   publishedAt: Date,
   content: Content[]
 }
+interface postProps{
+  post: PostType;
+}
 
 // props deesestruturadas
-export function Post({ author, publishedAt, content }: postProps) {
+export function Post({ post }: postProps) {
   //se qualquer uma dessas props for alterada o post vai renderisar de novo
 
   const [comments, setComments] = useState([])
@@ -31,12 +35,12 @@ export function Post({ author, publishedAt, content }: postProps) {
   const [newCommentText, setNewCommentText] = useState('') // estado deve ser iniciado com o  mesmo tipo de dado que vai receber
 
   const publishedDateFormatted = format(
-    publishedAt,
+    post.publishedAt,
     "d 'de' LLLL 'às' HH:mm'h'", // formato de data segundo a lib fns(consultar documentação)
     { locale: ptBR },
   )
 
-  const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
+  const publishedDateRelativeToNow = formatDistanceToNow(post.publishedAt, {
     locale: ptBR,
     addSuffix: true,
   })
@@ -72,22 +76,22 @@ export function Post({ author, publishedAt, content }: postProps) {
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <Avatar src={author.avatarUrl} /> {/* */}
+          <Avatar src={post.author.avatarUrl} /> {/* */}
           <div className={styles.authorInfo}>
-            <strong>{author.name}</strong>
-            <span>{author.role}</span>
+            <strong>{post.author.name}</strong>
+            <span>{post.author.role}</span>
           </div>
         </div>
         <time
           title={publishedDateFormatted}
-          dateTime={publishedAt.toISOString()}
+          dateTime={post.publishedAt.toISOString()}
         >
           {publishedDateRelativeToNow}
         </time>
       </header>
 
       <div className={styles.content}>
-        {content.map((line) => {
+        {post.content.map((line) => {
           // key sempre vai no primeiro elemento depois de return
           if (line.type === 'paragraph') {
             // eslint-disable-next-line spaced-comment
