@@ -99,7 +99,7 @@ export function Post({ post }: postProps) {
           } else if (line.type === 'link') {
             return (
               <p key={line.content}>
-                <a href="https://www.rocketseat.com.br/discover">
+                <a href="https://www.linkedin.com/in/mateus-s-santos-8b89791b6/" target='_blank'>
                   {line.content}
                 </a>
               </p>
