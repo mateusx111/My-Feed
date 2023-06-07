@@ -30,7 +30,7 @@ interface postProps{
 export function Post({ post }: postProps) {
   //se qualquer uma dessas props for alterada o post vai renderisar de novo
 
-  const [comments, setComments] = useState([])
+  const [comments, setComments] =  useState<Array<string>>([])
 
   const [newCommentText, setNewCommentText] = useState('') // estado deve ser iniciado com o  mesmo tipo de dado que vai receber
 

@@ -6,8 +6,6 @@ import styles from './App.module.css'
 
 import './global.css'
 
-
-
 const post: PostType[] = [
   {
     id: 1,
