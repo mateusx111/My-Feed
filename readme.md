@@ -3,6 +3,7 @@
 <br>
 
 ## :camera: Demonstração
+![gif](github/Myfeed.gif)
 
 <h3 id="sobre"/> Sobre </h3>
 Projeto desenvolvido para por em prática os conceitos básicos de ReactJs, utilizando boas praticas durante o desenvolvimento abordei técnicas como:
